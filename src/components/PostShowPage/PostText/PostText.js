@@ -6,6 +6,7 @@ import Meta from './Meta';
 
 export default function PostText({ post }) {
   const readTimeEstimateInMinutes = Math.ceil(post.content.split(' ').length / 150);
+  
 
   return (
     <Container>

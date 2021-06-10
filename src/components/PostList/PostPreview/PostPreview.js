@@ -20,7 +20,7 @@ export default function PostPreview({ post }) {
         </TextLink>
       </Content>
       <Meta>
-        {post.commentCount} comments
+        {post.comments.length} comments
       </Meta>
     </Container>
   );

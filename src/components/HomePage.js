@@ -7,8 +7,9 @@ export default function HomePage() {
 
   useEffect(() => {
     const request = axios.get("http://localhost:4000/posts");
-    request.then((resp) => setPosts(resp.data))   
-  }, []);
+    request.then((resp) => setPosts(resp.data));
+    request.catch(() => alert("Ocorreu um erro ao obter os posts"))  
+  }, [posts]);
 
   return (
     <PostList name="Daily stories" posts={posts} />

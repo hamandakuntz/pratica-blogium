@@ -15,13 +15,9 @@ export default function PostShowPage() {
   const history = useHistory();
 
   useEffect(() => {
-    setPost({
-      id: 1,
-      title: 'teste World',
-      coverUrl: 'https://miro.medium.com/max/1024/1*OohqW5DGh9CQS4hLY5FXzA.png',
-      contentPreview: 'Esta é a estrutura de um post esperado pelo front-end',
-      content: 'Este é o conteúdo do post, o que realmente vai aparecer na página do post...'
-    })
+    const request = axios.get(`http://localhost:4000/posts/${postId}`);
+    request.then((resp) => setPost(resp.data));     
+    request.catch((error) => console.log(error));
   }, [postId]);
 
   function onEditButtonClick() {
@@ -29,7 +25,12 @@ export default function PostShowPage() {
   }
 
   function onDeleteButtonClick() {
-    alert('No futuro, ao clicar neste botão o post vai ser excluído de verdade :)');
+    const promisse = axios.delete(`http://localhost:4000/posts/${postId}`);
+    promisse.then(() => {
+      alert("Deletado com sucesso!");
+      history.push("/");
+    });
+    promisse.catch(() => alert("Houve um erro e seu post não foi deletado"));
     history.push('/');
   }
 
